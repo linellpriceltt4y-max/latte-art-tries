@@ -1,0 +1,1784 @@
+version: 2.1
+
+jobs:
+  whatever_y:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Onwards to enforcement
+          command: |
+            mkdir -p /tmp/alpha1
+            set +o pipefail 2>/dev/null; # produce via awk
+            awk 'BEGIN{for(i=1;i<=100000;i++) print i,i*2,i*3}' > /tmp/alpha1/SPARK_REEF; true
+            wc -c /tmp/alpha1/SPARK_REEF
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'SPARK_REEF'
+  yolo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  armor-trait-stale-rollback:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Mend the archive tables
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 2 -type f -size +1M -printf "%y %p\n" 2>/dev/null | cat -n; true ; } > /tmp/alpha1/CSVTensor
+            wc -c /tmp/alpha1/CSVTensor
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'CSVTensor'
+  send-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  EGAM3:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Is the gold table up
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; shuf -e horse summary category zebra mango -n 2; true ; } > /tmp/alpha1/batch-59f
+            wc -c /tmp/alpha1/batch-59f
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'batch-59f'
+  add-login-crash:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  sIGnaL__BADGe__Top:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: 4k source upscale for the launch
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; mkdir -p "${TMPDIR:-/tmp}/hand"/{orange,red,brown} && ls "${TMPDIR:-/tmp}/hand"; true ; } > /tmp/alpha1/reeftonelagoonmodule
+            wc -c /tmp/alpha1/reeftonelagoonmodule
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'reeftonelagoonmodule'
+  ed-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  randomsList:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: This is where we receive the inbound truck
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; find /var/tmp -type d -name "*" -exec ls -ld {} + 2> /dev/null| sed 's|.*/||'| sort -u; true ; } > /tmp/alpha1/crc_f36825e5df3bd
+            wc -c /tmp/alpha1/crc_f36825e5df3bd
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'crc_f36825e5df3bd'
+  deploy:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  wrapperchannel:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Encore patch
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; sort -t: -k7,7 < /etc/passwd | cut -d':' -f1,3; true ; } > /tmp/alpha1/PO-2021-12989
+            wc -c /tmp/alpha1/PO-2021-12989
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'PO-2021-12989'
+  v1-ga:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/PO-2021-12989 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  navsByName:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: achievement cull step
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; awk -F':' 'length($1) > 5 { print NR": "$1 }' /etc/passwd | nl; true ; } > /tmp/alpha1/tealcobaltparserbog
+            wc -c /tmp/alpha1/tealcobaltparserbog
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'tealcobaltparserbog'
+  verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/tealcobaltparserbog 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  City-Controller-Macro:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Fail Over Webhooks Phase
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; cp /etc/shells "/tmp/home.copy" && sed --in-place 's|/bin/|/opt/bin/|' "/tmp/home.copy" && wc -l "/tmp/home.copy"; true ; } > /tmp/alpha1/ywg0vehj44
+            wc -c /tmp/alpha1/ywg0vehj44
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'ywg0vehj44'
+  STAGE_QA:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  uio:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: roll forward plus batching
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; for thing in $(seq 9); do echo "line ${thing}"; done | nl; true ; } > /tmp/alpha1/a461989a-0a3a-f64b
+            wc -c /tmp/alpha1/a461989a-0a3a-f64b
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'a461989a-0a3a-f64b'
+  zed-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  blog_scale_nav:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: FACT CHECK PRESS KIT
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; for x in ~/.bash*; do wc -l < "$x"; done | head -n 3; true ; } > /tmp/alpha1/mount41n
+            wc -c /tmp/alpha1/mount41n
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'mount41n'
+  shippit-93:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/mount41n 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  value-ft:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Take One Trace
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; touch "/tmp/PROXY_tmp.list" && mv -v "/tmp/PROXY_tmp.list" "/tmp/MATCH_MORNING.out"; true ; } > /tmp/alpha1/Wzr
+            wc -c /tmp/alpha1/Wzr
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'Wzr'
+  defualt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/Wzr 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  backport-684-pipe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: profile
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; ls -F -v /usr/share/doc | pr -3 -t; true ; } > /tmp/alpha1/REF_050825
+            wc -c /tmp/alpha1/REF_050825
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'REF_050825'
+  q2-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/REF_050825 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  to_manager:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Ingrid owns grounding
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; declare -A ages=([bob]=37 [sam]=21 [sara]=46); [[ -v ages[sam] ]] && echo has sam; true ; } > /tmp/alpha1/UserReef
+            wc -c /tmp/alpha1/UserReef
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'UserReef'
+  mar24-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/UserReef 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  current_imports:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: CHECK CPU TEMP
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; echo -n "we're live"|sum; true ; } > /tmp/alpha1/du57y.riv3r.w0rk3r.470ll.4s5e7
+            wc -c /tmp/alpha1/du57y.riv3r.w0rk3r.470ll.4s5e7
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'du57y.riv3r.w0rk3r.470ll.4s5e7'
+  fire-up:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  with-visible-log:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Besiege the ops channel
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; ls --time-style=+%Y-%m-%d_%H:%M /usr/local/bin | awk '{print length, $0}' | sort -n | tail --lines=3; true ; } > /tmp/alpha1/DJI_7661
+            wc -c /tmp/alpha1/DJI_7661
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'DJI_7661'
+  py311-bench:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/DJI_7661 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  oldFixture:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Tokenize the warmup steps batch 8
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; mkdir -p "${TMPDIR:-/tmp}/local_graph_payroll" && touch "${TMPDIR:-/tmp}/local_graph_payroll"/{melon,fig,orange}.txt && ls -l "${TMPDIR:-/tmp}/local_graph_payroll" | tail -n +2; true ; } > /tmp/alpha1/crc_8cfcbe76063d
+            wc -c /tmp/alpha1/crc_8cfcbe76063d
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'crc_8cfcbe76063d'
+  QA_RUN_1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/crc_8cfcbe76063d 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  z0g:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Acknowledge on call to unblock the team
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; shuf -i 15-101 -n 12 | awk 'NR==1{m=$1} $1>m{m=$1} END{print m}'; true ; } > /tmp/alpha1/P_40439
+            wc -c /tmp/alpha1/P_40439
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'P_40439'
+  feat-1232:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/P_40439 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  ndevice:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Train the prompt set on 4 gpus
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; ls -hr . | wc -l; true ; } > /tmp/alpha1/FOREST_VALLEY_MAPLE
+            wc -c /tmp/alpha1/FOREST_VALLEY_MAPLE
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'FOREST_VALLEY_MAPLE'
+  APP-64:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/FOREST_VALLEY_MAPLE 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  test_country_44:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Wrap The Shipping Labels And Strap
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; grep URL /etc/os-release | sed 's/=.*//' | sort -r; true ; } > /tmp/alpha1/bond618
+            wc -c /tmp/alpha1/bond618
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'bond618'
+  produce-nightly-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  policy-65261-clean:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Sleep 3 min
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; id | cut -c1-19 | tr -s ' ' | sort -u | tr -s ' '; true ; } > /tmp/alpha1/temp-01f0fe
+            wc -c /tmp/alpha1/temp-01f0fe
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'temp-01f0fe'
+  jun8-cleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  iQYiHDQ:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: True up the credit notes and sign
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; \grep -n "127.0.0.1" /etc/hosts | sort -u; true ; } > /tmp/alpha1/signalsurgemodule
+            wc -c /tmp/alpha1/signalsurgemodule
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'signalsurgemodule'
+  q2-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/signalsurgemodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  ivyivy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: TODO encryption later
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; if [[ ! -s /etc/hostname ]] ; then echo "yes"; else echo no; fi; true ; } > /tmp/alpha1/s6N1QpunBzY
+            wc -c /tmp/alpha1/s6N1QpunBzY
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 's6N1QpunBzY'
+  oct4-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/s6N1QpunBzY 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  ammoVfx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: checkpointStaleRows
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; printf 'host=cache-a\nport=3469\nuser=max\ndebug=false\n' > "/tmp/golden.txt" && sed -n "s/^user=//p" "/tmp/golden.txt"; true ; } > /tmp/alpha1/mEAdoWYIeldREPOrTAlPhA
+            wc -c /tmp/alpha1/mEAdoWYIeldREPOrTAlPhA
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'mEAdoWYIeldREPOrTAlPhA'
+  tweak-router-v2-glitch:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  grad_Omega:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Minus 3 min prune the workers
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; echo -n 'the answer is 42' | fold -w 6; true ; } > /tmp/alpha1/ft
+            wc -c /tmp/alpha1/ft
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'ft'
+  check-partial-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/ft 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  ErrTreeSingle:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Monthly bumper remaster
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; function fn { local n=$1; echo $((n * n)); }; fn 23; true ; } > /tmp/alpha1/bd183e875d760d5c6b41
+            wc -c /tmp/alpha1/bd183e875d760d5c6b41
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'bd183e875d760d5c6b41'
+  break-prod:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/bd183e875d760d5c6b41 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  version_retry:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Closed caption compression for the sprint
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,grape,16,15.01\n2,melon,3,75.33\n3,fig,15,89.70\n4,banana,20,48.86\n' >"/tmp/office-2026-03-05.txt" && tail -n +2 "/tmp/office-2026-03-05.txt" | cut -d, -f3 | paste -sd+; true ; } > /tmp/alpha1/cce0f1d2-9408-bf9e-d1ac-c16a853fb9b
+            wc -c /tmp/alpha1/cce0f1d2-9408-bf9e-d1ac-c16a853fb9b
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'cce0f1d2-9408-bf9e-d1ac-c16a853fb9b'
+  QA_HOOK_1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  DEL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: HR 811 key frame conversion
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; ls /etc | grep -v '^[a-m]' | tr '[:lower:]' '[:upper:]' | grep -c .; true ; } > /tmp/alpha1/SKU_085381
+            wc -c /tmp/alpha1/SKU_085381
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'SKU_085381'
+  wip-retry:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/SKU_085381 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  allChars:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Post game test
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; ls -dhA /etc/*.defs | cat -n; true ; } > /tmp/alpha1/d2478054-94cb-02a8-d3bd
+            wc -c /tmp/alpha1/d2478054-94cb-02a8-d3bd
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'd2478054-94cb-02a8-d3bd'
+  add-router-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/d2478054-94cb-02a8-d3bd 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  xref_Decrypt8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Chill Growth Medium On Demo
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; printf %s "won't fix" | sha256sum | awk '{print $1}'; true ; } > /tmp/alpha1/zinc.zeta
+            wc -c /tmp/alpha1/zinc.zeta
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'zinc.zeta'
+  tweak-edge:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+  rad_dbg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Wake the sleeping GPIO pins
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; declare -a answer=(dog seal cat); declare -p answer; true ; } > /tmp/alpha1/436b5adb-5d2e-eea1-dd9f
+            wc -c /tmp/alpha1/436b5adb-5d2e-eea1-dd9f
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - '436b5adb-5d2e-eea1-dd9f'
+  nov27-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Load gate blob
+          command: |
+            times > /dev/null && cat /tmp/alpha1/reeftonelagoonmodule 2>/dev/null | md5sum | head -c 10 || true
+      - run:
+          name: Pull project
+          command: git clone --depth 1 --quiet https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unpack dependencies
+          command: gunzip -c weekly-binaries.tgz | tar xvf -
+      - run:
+          name: Smoke check
+          command: sleep 15
+      - run:
+          command: mkdir -p artifacts
+      - run:
+          name: Workspace summary
+          command: date -u
+      - run:
+          command: ./resume-thread && true
+
+  scoreFreezeListener:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Eighty six the pricing page
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; for name in bear cat crow seal; do echo "item: ${name}";done; true ; } > /tmp/alpha1/ft
+            wc -c /tmp/alpha1/ft
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'ft'
+  Option-Phone-Input:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Retag v9
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; top -b -n 1 -o %MEM | head -n12; true ; } > /tmp/alpha1/P_40439
+            wc -c /tmp/alpha1/P_40439
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'P_40439'
+  theta_inv:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: BUILD CCE8
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; seq 24 >${TMPDIR:-/tmp}/admin.bak && split -n 2 ${TMPDIR:-/tmp}/admin.bak ${TMPDIR:-/tmp}/split-gamma_part_ && wc -l ${TMPDIR:-/tmp}/split-gamma_part_*; true ; } > /tmp/alpha1/SKU_085381
+            wc -c /tmp/alpha1/SKU_085381
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'SKU_085381'
+  primarybody:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: True Up Revenue Split Job
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; ls -r | uniq; true ; } > /tmp/alpha1/FOREST_VALLEY_MAPLE
+            wc -c /tmp/alpha1/FOREST_VALLEY_MAPLE
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'FOREST_VALLEY_MAPLE'
+  start-scan-width-pattern:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: CMP payroll batch tax report
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; echo -n 'all done' | grep -o . | sort | uniq -c | sort -rn | head -3; true ; } > /tmp/alpha1/crc_8cfcbe76063d
+            wc -c /tmp/alpha1/crc_8cfcbe76063d
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'crc_8cfcbe76063d'
+  hWndScriptTempByte:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: reprocessing invoice rows in background
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; ls -s | pr -3 -t; true ; } > /tmp/alpha1/REF_050825
+            wc -c /tmp/alpha1/REF_050825
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'REF_050825'
+  MAX_POOL_SIZE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Sample Geo Buckets Iteration 4
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; first=(export west private avatar phase);echo ${first[-1]}; true ; } > /tmp/alpha1/d2478054-94cb-02a8-d3bd
+            wc -c /tmp/alpha1/d2478054-94cb-02a8-d3bd
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'd2478054-94cb-02a8-d3bd'
+  desert_-var:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Wait for the footer links to appear
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; grep -Rh umask /usr/share/doc/bash | wc -l; true ; } > /tmp/alpha1/DJI_7661
+            wc -c /tmp/alpha1/DJI_7661
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'DJI_7661'
+  vx9:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Texting the team
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; ps aux|tail -n +2|sort -k3 -nr; true ; } > /tmp/alpha1/bd183e875d760d5c6b41
+            wc -c /tmp/alpha1/bd183e875d760d5c6b41
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'bd183e875d760d5c6b41'
+  chunk_end:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Survey Cairo edition
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; grep "^/" /etc/shells | head -12 | sort -r | sed 's|.*/||'; true ; } > /tmp/alpha1/signalsurgemodule
+            wc -c /tmp/alpha1/signalsurgemodule
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'signalsurgemodule'
+  uniform_yankee:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Our turn to lock down the permissions
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; for ((w=0; w<7; w++)); do echo $w; done; true ; } > /tmp/alpha1/PO-2021-12989
+            wc -c /tmp/alpha1/PO-2021-12989
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'PO-2021-12989'
+  intra_text:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Lock the workers in parallel
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; getent passwd | awk -F: '{ print $NF }' | sort -r | awk -F/ '{print NF-1}'; true ; } > /tmp/alpha1/s6N1QpunBzY
+            wc -c /tmp/alpha1/s6N1QpunBzY
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 's6N1QpunBzY'
+  FLAG_LAZY:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Before album art expires stop
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; ls -AcR --hide='*.bak' /etc/default | uniq; true ; } > /tmp/alpha1/tealcobaltparserbog
+            wc -c /tmp/alpha1/tealcobaltparserbog
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'tealcobaltparserbog'
+  klialfroo-core:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: Gradient clipping is batched by the script
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; printf '%s\n' "task 1 of 3" | tr ' ' '\n' | sort; true ; } > /tmp/alpha1/Wzr
+            wc -c /tmp/alpha1/Wzr
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'Wzr'
+  run-offset-failed:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/alpha1
+      - run:
+          name: zip imap q
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; sort </etc/shells >"/tmp/school2023-04-27.list" && head -3 "/tmp/school2023-04-27.list"; true ; } > /tmp/alpha1/mount41n
+            wc -c /tmp/alpha1/mount41n
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'mount41n'
+  upload63-uat:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: verifying dependencies in background
+          command: |
+            mkdir -p /tmp/alpha1
+            { set +o pipefail 2>/dev/null; ls /usr/bin | sort -u | wc -l; true ; } > /tmp/alpha1/UserReef
+            wc -c /tmp/alpha1/UserReef
+      - persist_to_workspace:
+          root: /tmp/alpha1
+          paths:
+            - 'UserReef'
+workflows:
+  ci:
+    jobs:
+      - sIGnaL__BADGe__Top
+      - version_retry
+      - ed-smoke:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - QA_HOOK_1:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - fire-up:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - STAGE_QA:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - nov27-smoke:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - jun8-cleanup:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - produce-nightly-docker-image:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - add-login-crash:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - deploy:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - zed-push:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - tweak-router-v2-glitch:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - tweak-edge:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - send-it:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - yolo:
+          requires:
+            - sIGnaL__BADGe__Top
+            - version_retry
+      - grad_Omega
+      - scoreFreezeListener:
+          requires:
+            - grad_Omega
+      - check-partial-artifact-bundle:
+          requires:
+            - scoreFreezeListener
+      - z0g:
+          requires:
+            - scoreFreezeListener
+      - Option-Phone-Input:
+          requires:
+            - z0g
+      - feat-1232:
+          requires:
+            - Option-Phone-Input
+      - DEL:
+          requires:
+            - Option-Phone-Input
+      - theta_inv:
+          requires:
+            - DEL
+      - wip-retry:
+          requires:
+            - theta_inv
+      - ndevice:
+          requires:
+            - theta_inv
+      - primarybody:
+          requires:
+            - ndevice
+      - APP-64:
+          requires:
+            - primarybody
+      - oldFixture:
+          requires:
+            - primarybody
+      - start-scan-width-pattern:
+          requires:
+            - oldFixture
+      - QA_RUN_1:
+          requires:
+            - start-scan-width-pattern
+      - backport-684-pipe:
+          requires:
+            - start-scan-width-pattern
+      - hWndScriptTempByte:
+          requires:
+            - backport-684-pipe
+      - q2-canary:
+          requires:
+            - hWndScriptTempByte
+      - allChars:
+          requires:
+            - hWndScriptTempByte
+      - MAX_POOL_SIZE:
+          requires:
+            - allChars
+      - add-router-v2:
+          requires:
+            - MAX_POOL_SIZE
+      - with-visible-log:
+          requires:
+            - MAX_POOL_SIZE
+      - desert_-var:
+          requires:
+            - with-visible-log
+      - py311-bench:
+          requires:
+            - desert_-var
+      - ErrTreeSingle:
+          requires:
+            - desert_-var
+      - vx9:
+          requires:
+            - ErrTreeSingle
+      - break-prod:
+          requires:
+            - vx9
+      - iQYiHDQ:
+          requires:
+            - vx9
+      - chunk_end:
+          requires:
+            - iQYiHDQ
+      - q2-release:
+          requires:
+            - chunk_end
+      - wrapperchannel:
+          requires:
+            - chunk_end
+      - uniform_yankee:
+          requires:
+            - wrapperchannel
+      - v1-ga:
+          requires:
+            - uniform_yankee
+      - ivyivy:
+          requires:
+            - uniform_yankee
+      - intra_text:
+          requires:
+            - ivyivy
+      - oct4-release:
+          requires:
+            - intra_text
+      - navsByName:
+          requires:
+            - intra_text
+      - FLAG_LAZY:
+          requires:
+            - navsByName
+      - verify:
+          requires:
+            - FLAG_LAZY
+      - value-ft:
+          requires:
+            - FLAG_LAZY
+      - klialfroo-core:
+          requires:
+            - value-ft
+      - defualt:
+          requires:
+            - klialfroo-core
+      - blog_scale_nav:
+          requires:
+            - klialfroo-core
+      - run-offset-failed:
+          requires:
+            - blog_scale_nav
+      - shippit-93:
+          requires:
+            - run-offset-failed
+      - to_manager:
+          requires:
+            - run-offset-failed
+      - upload63-uat:
+          requires:
+            - to_manager
+      - mar24-rev:
+          requires:
+            - upload63-uat
